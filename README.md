@@ -1,6 +1,6 @@
 ## BooktreeV2
 
-A refactored and production-ready booktree platform
+A refactored Booktree platform in production
 
 ### Logs
 > 03/01/2020
