@@ -1,0 +1,24 @@
+{
+  "name": "booktree-v2",
+  "version": "1.0.0",
+  "description": "A refactored and production-ready booktree platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoerJ/booktreeV2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoerJ/booktreeV2/issues"
+  },
+  "homepage": "https://github.com/DoerJ/booktreeV2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
