@@ -1,11 +1,5 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
-
-router.post('/signup', (req, res) => {
+module.exports = function signUpFirebaseAccountRoute(req, res) {
     res.json({
-        statusCode: 200;
+        statusCode: 200
     });
-})
-
-module.exports = router;
+}

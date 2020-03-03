@@ -18,13 +18,9 @@ app.use(bodyParser.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+var userRoutes = require('./routes/users/');
 
-
-app.post('/api/signup', (req, res) => {
-    res.json({
-        statusCode: 200
-    });
-})
+app.use('/api/user', userRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
