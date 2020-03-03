@@ -1,0 +1,8 @@
+.btn-container > div {
+    margin-top: 50px;
+    margin-left: 50px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 10px;
+}
