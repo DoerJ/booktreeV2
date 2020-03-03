@@ -15,6 +15,7 @@ app.all('*', function(req, res, next) {
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
