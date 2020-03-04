@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { userAPIs } from '../../services/user-apis';
+import { userAPIs } from '../../services/apis/user-apis.js';
 import '../../assets/css/signup.css';
 
 class SignUp extends Component {
