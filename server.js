@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-// change to 'client/build' upon deployment
-app.use(express.static(path.join(__dirname, '/client/build')));
+// Change to 'client/build' upon deployment
+app.use(express.static(path.join(__dirname, '/client')));
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

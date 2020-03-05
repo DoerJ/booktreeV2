@@ -34,8 +34,7 @@ class SignUp extends Component {
                 this.props.history.push('/log-in');
             }
         }, (res) => {
-            let error = new Error(res.statusText);
-            throw error;
+            throw new Error(res.resDescription);
         });
     }
 
@@ -44,7 +43,7 @@ class SignUp extends Component {
             <div>
                 <h2>Sign Up</h2>
                 <div className="signup-input-form">
-                    <div id="email-field">
+                    <div id="signup-email-field">
                         <label>Email</label>
                         <input
                             type="text"
@@ -52,7 +51,7 @@ class SignUp extends Component {
                             placeholder="email"
                         />
                     </div>
-                    <div id="username-field">
+                    <div id="signup-username-field">
                         <label>Username</label>
                         <input
                             type="text"
@@ -60,7 +59,7 @@ class SignUp extends Component {
                             placeholder="username"
                         />
                     </div>
-                    <div id="password-field">
+                    <div id="signup-password-field">
                         <label>Password</label>
                         <input
                             type="password"
@@ -68,7 +67,7 @@ class SignUp extends Component {
                             placeholder="password"
                         />
                     </div>
-                    <div id="password-retype-field">
+                    <div id="signup-password-retype-field">
                         <label>Confirm password</label>
                         <input
                             type="password"
@@ -76,7 +75,7 @@ class SignUp extends Component {
                             placeholder="confirm password"
                         />
                     </div>
-                    <div id="create-btn" onClick={this.onCreateAccount}>Create</div>
+                    <div id="signup-create-btn" onClick={this.onCreateAccount}>Create</div>
                 </div>
             </div>
         )
