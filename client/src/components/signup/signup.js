@@ -28,6 +28,7 @@ class SignUp extends Component {
             username: this.state.username,
             password: this.state.password
         }, (res) => {
+            console.log(res);
             if(res.statusCode === 200) {
                 alert('The account has been successfully created!');
                 this.props.history.push('/log-in');
