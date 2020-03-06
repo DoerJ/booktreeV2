@@ -3,6 +3,13 @@
 A refactored Booktree platform in production
 
 ### Logs
+> 03/05/2020
+
+* Added LogIn page
+* Added session management with Redis
+* Added routes for sign-up and log-in
+* Initialized Dashboard component 
+
 > 03/02/2020
 
 * Added Main and SignUp page
