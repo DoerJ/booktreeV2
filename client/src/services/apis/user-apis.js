@@ -6,5 +6,8 @@ export const userAPIs = {
     },
     login: (params, success, error) => {
         apiConnector('POST', '/api/user/login', params, success, error);
+    },
+    logout: (params, success, error) => {
+        apiConnector('POST', '/api/user/logout', params, success, error);
     }
 }
