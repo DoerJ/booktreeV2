@@ -1,9 +1,29 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const redis = require('redis');
+const session = require('express-session');
+const redisStore = require('connect-redis')(session);
+const client = redis.createClient();
 
 // Change to 'client/build' upon deployment
 app.use(express.static(path.join(__dirname, '/client')));
+app.set('trust proxy');
+
+app.use(session({
+    secret: 'SECRET SESSION MESSAGE',
+    store: new redisStore({
+        host: 'localhost',
+        port: 6379,
+        client: client
+    }),
+    saveUninitialized: false,
+    resave: false
+}));
+
+app.get('/', function(req, res) {
+    if(req.session.key) req.redirect('/dashboard');
+})
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

@@ -25,7 +25,8 @@ class LogIn extends Component {
             console.log(res);
             if(res.statusCode === 200) this.props.history.push('/dashboard');
         }, (res) => {
-            throw new Error(res.resDescription);
+            if(res.statusCode === 409) alert(res.resDescription);
+            else throw new Error(res.resDescription);
         })
     }
 
