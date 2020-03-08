@@ -22,6 +22,7 @@ app.use(session({
 }));
 
 app.get('/', function(req, res) {
+    console.log(`SESSION KEY: ${req.session.key}`);
     if(req.session.key) req.redirect('/dashboard');
 })
 

@@ -23,7 +23,7 @@ class LogIn extends Component {
             password: this.state.password
         }, (res) => {
             console.log(res);
-            if(res.statusCode === 200) this.props.history.push('/dashboard');
+            this.props.history.push('/dashboard');
         }, (res) => {
             if(res.statusCode === 409 || 401) alert(res.resDescription);
             else throw new Error('Permission denied');

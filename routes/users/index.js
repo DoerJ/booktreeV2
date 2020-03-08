@@ -9,5 +9,6 @@ var logInFirebaseAccountRoute = require('./login-fb-account');
 router.post('/login', logInFirebaseAccountRoute);
 
 var logOutFirebaseAccountRoute = require('./logout-fb-account');
+router.post('/logout', logOutFirebaseAccountRoute);
 
 module.exports = router;
