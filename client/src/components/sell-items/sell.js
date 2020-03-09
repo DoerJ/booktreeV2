@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-class Dashboard extends Component {
+class Sell extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,10 +9,10 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <h2>Dashboard</h2>
+                <h2>Sell</h2>
             </div>
         );
     }
 }
 
-export default Dashboard;
+export default Sell;

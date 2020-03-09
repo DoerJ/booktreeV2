@@ -1,6 +1,12 @@
 #logout-btn {
     display: inline-block;
+    float: right;
     border: 1px solid black;
     padding: 10px;
     cursor: pointer;
+}
+#dashboard-nav-bar > li {
+    display: inline-block;
+    margin: 20px;
+    text-decoration: none;
 }

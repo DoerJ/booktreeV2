@@ -13,7 +13,7 @@ import {
 const Main = lazy(() => import ('./components/main/main'));
 const SignUp = lazy(() => import ('./components/signup/signup'));
 const LogIn = lazy(() => import ('./components/login/login'));
-const Dashboard = lazy(() => import ('./components/dashboard/dashboard'));
+const NavigationBar = lazy(() => import ('./components/common/nav-bar.js'));
 
 function App() {
     return (
@@ -22,7 +22,7 @@ function App() {
                 <Route exact path="/" component={Main} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/log-in" component={LogIn} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path={["/dashboard", "/dashboard/*"]} component={NavigationBar} />
             </Switch>
         </div>
     );
