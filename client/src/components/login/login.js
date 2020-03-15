@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { userAPIs } from '../../services/apis/user-apis.js';
+import { userAPIs } from 'scripts.js';
 import '../../assets/css/login.css';
 
 class LogIn extends Component {

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { withRouter } from 'react-router';
-import { userAPIs } from '../../services/apis/user-apis.js';
+import { userAPIs } from 'scripts';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Dashboard from '../dashboard/dashboard';
-import Sell from '../sell-items/sell';
-import MeInfo from '../me-info/me';
+import { Dashboard, Sell, MeInfo } from 'scripts.js';
 import '../../assets/css/nav-bar.css';
 
 class NavigationBar extends Component {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { sessionAPIs } from '../../services/apis/session-apis.js';
 import '../../assets/css/main.css';
 
 /* global location */
@@ -9,11 +8,6 @@ import '../../assets/css/main.css';
 class Main extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount = () => {
-        console.log('Checking session key');
-        sessionAPIs.main((res) => {}, (res) => {});
     }
 
     redirectToLogIn = () => {
