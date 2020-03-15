@@ -7,7 +7,7 @@ const redisStore = require('connect-redis')(session);
 const client = redis.createClient();
 
 // Change to 'client/build' upon deployment
-app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(path.join(__dirname, 'client')));
 app.set('trust proxy');
 
 app.use(session({
@@ -22,15 +22,11 @@ app.use(session({
 }));
 
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "content-type");
-  res.header("Content-Type", "application/json;charset=utf-8");
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "content-type");
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
 });
-
-app.get('*', function(req, res) {
-    console.log('redirect');
-})
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded());

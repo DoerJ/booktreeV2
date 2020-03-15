@@ -1,5 +1,5 @@
 // Centralize services and components
-// services
+// Services
 export { apiConnector } from './services/apis/core-api-connector.js';
 export { userAPIs } from './services/apis/user-apis.js';
 
