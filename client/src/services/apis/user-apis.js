@@ -1,4 +1,4 @@
-import { apiConnector } from './core-api-connector';
+import { apiConnector } from 'scripts.js';
 
 export const userAPIs = {
     signup: (params, success, error) => {
