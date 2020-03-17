@@ -14,7 +14,8 @@ module.exports = function signUpFirebaseAccountRoute(req, res) {
                 userId: uid,
                 email: email,
                 username: username,
-                createDate: new Date(Date.now()).toString()
+                createDate: new Date(Date.now()).toString(),
+                uploads: {}
             }).then(() => {
                 console.log('User has been successfully created');
                 console.log('Sending signup verification email...');

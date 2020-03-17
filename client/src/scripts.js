@@ -2,6 +2,7 @@
 // Services
 export { apiConnector } from './services/apis/core-api-connector.js';
 export { userAPIs } from './services/apis/user-apis.js';
+export { localStorage } from './services/storage/local-storage.js';
 
 // Components
 export { default as Dashboard } from './components/dashboard/dashboard.js';
