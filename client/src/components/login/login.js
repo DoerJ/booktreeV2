@@ -17,7 +17,6 @@ class LogIn extends Component {
     }
 
     onLogInAccount = (e) => {
-        e.preventDefault();
         userAPIs.login({
             email: this.state.email,
             password: this.state.password

@@ -11,4 +11,7 @@ router.post('/login', logInFirebaseAccountRoute);
 var logOutFirebaseAccountRoute = require('./logout-fb-account');
 router.post('/logout', logOutFirebaseAccountRoute);
 
+var uploadRoute = require('./upload');
+router.post('/upload', uploadRoute);
+
 module.exports = router;

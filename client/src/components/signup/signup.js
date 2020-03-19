@@ -19,7 +19,6 @@ class SignUp extends Component {
     }
 
     onCreateAccount = (e) => {
-        e.preventDefault();
         if(this.state.password !== this.state.retypedPassword) {
             alert('Please confirm your password'); return;
         }
