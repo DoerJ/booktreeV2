@@ -4,7 +4,7 @@ export { apiConnector } from './services/apis/core-api-connector.js';
 export { userAPIs } from './services/apis/user-apis.js';
 export { localStorage } from './services/storage/local-storage.js';
 export { firebaseStorage } from './services/storage/firebase-storage.js';
-export { fileManager } from './services/uploader/image-uploader.js';
+export { fileManager } from './services/file-manager/file-manager.js';
 
 // Components
 export { default as Dashboard } from './components/dashboard/dashboard.js';

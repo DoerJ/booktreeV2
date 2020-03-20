@@ -7,6 +7,7 @@ class Sell extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            type: 'textbook',
             title: '',
             author: '',
             edition: '',
@@ -15,15 +16,30 @@ class Sell extends Component {
             file: {},
             summary: ''
         };
+        this.textbookInfo = { type: 'textbook' };
+        this.required = ['title', 'author', 'edition', 'summary', 'file'];
     }
 
     onUpdateTextbookInfo = (e, key) => {
-        console.log(`Update key: `, e.target.files);
+        var self = this;
         var val = (key === 'file') ? e.target.files[0] : e.target.value;
-        this.setState({[key]: val});
+        this.setState({[key]: val}, () => {
+            if(val === '') {
+                delete this.textbookInfo[key];
+            } else {
+                self.textbookInfo[key] = val;
+            }
+        });
     }
 
     onSubmitTextbookInfo = e => {
+        console.log('textbookInfo: ', this.textbookInfo);
+        for(let rq of this.required) {
+            if(typeof this.textbookInfo[rq] === 'undefined') {
+                alert(`${rq.toUpperCase()} field is required`);
+                return;
+            }
+        }
         fileManager.uploadImage(this.state.file, () => {
 
         });
