@@ -6,6 +6,10 @@ export { localStorage } from './services/storage/local-storage.js';
 export { firebaseStorage } from './services/storage/firebase-storage.js';
 export { fileManager } from './services/file-manager/file-manager.js';
 
+// Context
+export { contextValues } from './context/context-values.js';
+export { default as UserContext } from './context/context.js';
+
 // Components
 export { default as Dashboard } from './components/dashboard/dashboard.js';
 export { default as LogIn } from './components/login/login.js';

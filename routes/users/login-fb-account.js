@@ -19,14 +19,15 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                 res.send({
                     statusCode: 200,
                     resContext: 'LOGIN-WITH-EMAIL-AND-PASSWORD',
-                    resDescription: 'Successfully logged in'
+                    resDescription: 'Successfully logged in',
+                    userId: auth.currentUser.uid
                 })
             }
         }).catch(error => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
+            console.log('Error code: ', errorCode);
+            console.log('Error message', errorMessage);
             let resDescription = '';
             switch (errorCode) {
                 case 'auth/invalid-email':

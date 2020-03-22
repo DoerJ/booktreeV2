@@ -14,13 +14,17 @@ export const fileManager = {
                     console.log('Uploading task is paused');
                     break;
                 case storage.TaskState.RUNNING:
-                    console.log('Uploading task is running');
+                    console.log('Uploading task is running...');
                     break;
             }
         }, error => {
             console.log('The upload is unsuccessful: ', error);
         }, () => {
-            cb();
+            console.log('The upload is successful, getting download url...');
+            uploadTask.snapshot.ref.getDownloadUrl()
+                .then(url => {
+                    cb(url);
+                })
         })
     }
 }

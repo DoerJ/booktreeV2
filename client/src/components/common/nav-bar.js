@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { withRouter } from 'react-router';
-import { userAPIs } from 'scripts';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Dashboard, Sell, MeInfo } from 'scripts.js';
+import { Dashboard, Sell, MeInfo, userAPIs } from 'scripts.js';
 import '../../assets/css/nav-bar.css';
 
 class NavigationBar extends Component {
@@ -20,7 +19,7 @@ class NavigationBar extends Component {
     onLogOutAccount = (e) => {
         e.preventDefault();
         userAPIs.logout({}, (res) => {
-            console.log(res);
+            console.log('Response from logout: ', res);
             this.props.history.push('/log-in');
         }, (res) => {
             if(res.statusCode === 403) alert(res.resDescription);
