@@ -30,7 +30,7 @@ export default function LogIn(props) {
             if(res.statusCode == 409 || res.statusCode == 401) {
                 alert(res.resDescription);
             } else {
-                else throw new Error('Permission denied');    
+                throw new Error('Permission denied');    
             }
         })
     }
