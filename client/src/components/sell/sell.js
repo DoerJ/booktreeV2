@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { render } from 'react-dom';
-import { fileManager, userAPIs, UserContext } from 'scripts.js';
+import React from 'react';
+import { fileManager, userAPIs, localStorageModel } from 'scripts.js';
+import { withRouter } from 'react-router-dom';
 import '../../assets/css/sell.css';
 
-export default function Sell(props) {
-    const [userInfo, setUserInfo] = useContext(UserContext);
-    // var required = ['type', 'title', 'author', 'edition', 'summary', 'image'];
-    var required = ['type', 'title'];
+function Sell(props) {
+    // var required = ['type', 'title', 'author', 'edition', 'image'];
+    var required = ['type', 'title', 'image'];
     var textbookInfo = {
         type: 'textbook',
         title: '',
@@ -24,20 +23,34 @@ export default function Sell(props) {
     }
 
     function onSubmitTextbookInfo(e) {
+        props.history.push('/dashboard');
+        props.navHandler('');
+    }
+
+    function onSubmitTextbookInfo(e) {
         console.log('textbookInfo: ', textbookInfo);
-        console.log('UserContext: ', userInfo);
+        const userContext = JSON.parse(localStorageModel.getItem('currentUser'));
+        console.log('UserContext: ', userContext);
         for(let rq of required) {
             if(textbookInfo[rq] == '' || textbookInfo[rq] === null) {
                 alert(`${rq.toUpperCase()} field is required`);
                 return;
             }
         }
-        fileManager.uploadImage(textbookInfo.file, (downloadUrl) => {
+        fileManager.uploadImage(textbookInfo.image, (downloadUrl) => {
             textbookInfo.image = downloadUrl;
-            userAPIs.upload(textbookInfo, res => {
-                console.log('Response from image upload: ', res);
+            userAPIs.upload({
+                info: textbookInfo,
+                uid: userContext.userId
             }, res => {
-
+                console.log('Response from image upload: ', res);
+                if(res.statusCode === 200) {
+                    alert('Your book has been successfully uploaded');
+                    props.history.push('/dashboard');
+                    props.navHandler('');
+                }
+            }, res => {
+                throw new Error(res.resDescription);
             });
         });
     }
@@ -94,3 +107,5 @@ export default function Sell(props) {
         </div>
     );
 }
+
+export default withRouter(Sell);

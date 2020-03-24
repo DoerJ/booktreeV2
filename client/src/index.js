@@ -1,8 +1,7 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { createBrowserHistory } from 'history';
-import { UserContext, contextValues } from 'scripts.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -16,26 +15,24 @@ const SignUp = lazy(() => import ('./components/signup/signup'));
 const LogIn = lazy(() => import ('./components/login/login'));
 const NavigationBar = lazy(() => import ('./components/common/nav-bar.js'));
 
+export const history = createBrowserHistory();
+
 function App() {
-    // Initialized UserContext
-    const [userInfo, setUserInfo] = useState(contextValues.user);
     return (
         <div className="app">
-            <UserContext.Provider value={[userInfo, setUserInfo]}>
-                <Switch>
-                    <Route exact path="/" component={Main} />
-                    <Route exact path="/sign-up" component={SignUp} />
-                    <Route exact path="/log-in" component={LogIn} />
-                    <Route exact path={["/dashboard", "/dashboard/*"]} component={NavigationBar} />
-                </Switch>
-            </UserContext.Provider>
+            <Switch>
+                <Route exact path="/" component={Main} />
+                <Route exact path="/sign-up" component={SignUp} />
+                <Route exact path="/log-in" component={LogIn} />
+                <Route exact path={["/dashboard", "/dashboard/*"]} component={NavigationBar} />
+            </Switch>
         </div>
     );
 }
 
 ReactDOM.render(
     <Suspense fallback={<div className="loading-prompt">Loading...</div>}>
-        <Router history={createBrowserHistory()}>
+        <Router history={history}>
             <App />
         </Router>
     </Suspense>,

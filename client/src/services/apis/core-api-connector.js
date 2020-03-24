@@ -8,9 +8,14 @@ export function apiConnector(method, api, params, success, error) {
         body: (method === 'GET') ? null : JSON.stringify(params)
     }
     fetch(api, config)
-        .then(res => { return res.json(); })
         .then(res => {
-            if(res.statusCode === 200) success(res);
-            else error(res);
+            return res.json();
+        })
+        .then(res => {
+            if(res.statusCode === 200) {
+                success(res);
+            } else {
+                error(res);
+            }
         })
 }

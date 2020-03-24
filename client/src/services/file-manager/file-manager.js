@@ -1,7 +1,7 @@
-import { firebaseStorage } from 'scripts.js';
+import { firebaseStorageModel } from 'scripts.js';
 
-const storage = firebaseStorage.storage;
-const storageRef = firebaseStorage.storageRef;
+const storage = firebaseStorageModel.storage;
+const storageRef = firebaseStorageModel.storageRef;
 
 export const fileManager = {
     uploadImage: function(image, cb) {
@@ -21,7 +21,7 @@ export const fileManager = {
             console.log('The upload is unsuccessful: ', error);
         }, () => {
             console.log('The upload is successful, getting download url...');
-            uploadTask.snapshot.ref.getDownloadUrl()
+            uploadTask.snapshot.ref.getDownloadURL()
                 .then(url => {
                     cb(url);
                 })

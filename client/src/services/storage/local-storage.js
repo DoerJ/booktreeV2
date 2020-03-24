@@ -1,4 +1,4 @@
-export const localStorage = {
+export const localStorageModel = {
     addItem: (key, val) => {
         localStorage.setItem(key, val);
     },

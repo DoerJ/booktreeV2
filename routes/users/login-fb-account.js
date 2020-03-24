@@ -20,7 +20,8 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                     statusCode: 200,
                     resContext: 'LOGIN-WITH-EMAIL-AND-PASSWORD',
                     resDescription: 'Successfully logged in',
-                    userId: auth.currentUser.uid
+                    userId: auth.currentUser.uid,
+                    loginTime: new Date(Date.now()).toString()
                 })
             }
         }).catch(error => {

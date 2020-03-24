@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { withRouter } from 'react-router';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Dashboard, Sell, MeInfo, userAPIs } from 'scripts.js';
+import { Dashboard, Sell, MeInfo, userAPIs, localStorageModel } from 'scripts.js';
 import '../../assets/css/nav-bar.css';
 
 class NavigationBar extends Component {
@@ -20,6 +20,7 @@ class NavigationBar extends Component {
         e.preventDefault();
         userAPIs.logout({}, (res) => {
             console.log('Response from logout: ', res);
+            localStorageModel.removeItem('currentUser');
             this.props.history.push('/log-in');
         }, (res) => {
             if(res.statusCode === 403) alert(res.resDescription);
@@ -27,8 +28,7 @@ class NavigationBar extends Component {
         })
     }
 
-    handleNavigation = (e, navKey) => {
-        e.stopPropagation();
+    handleNavigation = navKey => {
         this.setState({
             navOnClick: navKey
         });
@@ -39,7 +39,7 @@ class NavigationBar extends Component {
             case '':
                 return <div><Dashboard /></div>;
             case 'sell':
-                return <div><Sell /></div>;
+                return <div><Sell history={this.props.history} navHandler={this.handleNavigation} /></div>;
             case 'me-info':
                 return <div><MeInfo /></div>;
             default:
@@ -54,13 +54,13 @@ class NavigationBar extends Component {
                     <Navbar.Brand href="/dashboard">Booktree</Navbar.Brand>
                     <ul id="dashboard-nav-bar">
                         <li id="dashboard-nav-home">
-                            <Link to="/dashboard" onClick={e => this.handleNavigation(e, '')}>Home</Link>
+                            <Link to="/dashboard" onClick={e => this.handleNavigation('')}>Home</Link>
                         </li>
                         <li id="dashboard-nav-sell">
-                            <Link to="/dashboard/sell" onClick={e => this.handleNavigation(e, 'sell')}>Sell</Link>
+                            <Link to="/dashboard/sell" onClick={e => this.handleNavigation('sell')}>Sell</Link>
                         </li>
                         <li id="dashboard-nav-me-info">
-                            <Link to="dashboard/me-info" onClick={e => this.handleNavigation(e, 'me-info')}>Me</Link>
+                            <Link to="/dashboard/me-info" onClick={e => this.handleNavigation('me-info')}>Me</Link>
                         </li>
                     </ul>
                     <Button variant="outline-success" onClick={e => this.onLogOutAccount(e)}>Log Out</Button>
@@ -73,4 +73,4 @@ class NavigationBar extends Component {
     }
 }
 
-export default NavigationBar;
+export default withRouter(NavigationBar);

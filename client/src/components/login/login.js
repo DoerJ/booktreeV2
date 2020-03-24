@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { render } from 'react-dom';
-import { UserContext, userAPIs } from 'scripts.js';
+import React from 'react';
+import { userAPIs, contextValues, localStorageModel } from 'scripts.js';
 import '../../assets/css/login.css';
 
 export default function LogIn(props) {
-    const [userInfo, setUserInfo] = useContext(UserContext);
     var loginCredentials = {
         email: '',
         password: ''
@@ -14,23 +12,24 @@ export default function LogIn(props) {
         loginCredentials[key] = e.target.value;
     }
 
-    function onLogInAccount(e){
-        console.log('UserContext: ', userInfo);
+    function onLogInAccount(e) {
+        console.log('Props: ', props);
         userAPIs.login({
             email: loginCredentials.email,
             password: loginCredentials.password
         }, (res) => {
             console.log('Response from login: ', res);
-            setUserInfo(userInfo => ({
-                ...userInfo,
-                userId: res.userId
+            localStorageModel.addItem('currentUser', JSON.stringify({
+                ...contextValues.user,
+                userId: res.userId,
+                loginTime: res.loginTime
             }));
             props.history.push('/dashboard');
         }, (res) => {
             if(res.statusCode == 409 || res.statusCode == 401) {
                 alert(res.resDescription);
             } else {
-                throw new Error('Permission denied');    
+                throw new Error('Permission denied');
             }
         })
     }
