@@ -23,11 +23,6 @@ function Sell(props) {
     }
 
     function onSubmitTextbookInfo(e) {
-        props.history.push('/dashboard');
-        props.navHandler('');
-    }
-
-    function onSubmitTextbookInfo(e) {
         console.log('textbookInfo: ', textbookInfo);
         const userContext = JSON.parse(localStorageModel.getItem('currentUser'));
         console.log('UserContext: ', userContext);
