@@ -11,14 +11,14 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
             if(!auth.currentUser.emailVerified) {
                 res.send({
                     statusCode: 409,
-                    resContext: 'LOGIN-WITH-EMAIL-AND-PASSWORD',
+                    resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
                     resDescription: 'Email not verified'
                 });
             } else {
                 req.session.key = auth.currentUser.uid;
                 res.send({
                     statusCode: 200,
-                    resContext: 'LOGIN-WITH-EMAIL-AND-PASSWORD',
+                    resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
                     resDescription: 'Successfully logged in',
                     userId: auth.currentUser.uid,
                     loginTime: new Date(Date.now()).toString()
@@ -46,7 +46,7 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
             }
             res.send({
                 statusCode: 401,
-                resContext: 'LOGIN-WITH-EMAIL-AND-PASSWORD',
+                resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
                 resDescription: resDescription
             });
         })

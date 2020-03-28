@@ -24,7 +24,7 @@ module.exports = function signUpFirebaseAccountRoute(req, res) {
                         console.log('Verification email has been sent');
                         res.send({
                             statusCode: 200,
-                            resContext: 'SIGNUP-WITH-EMAIL-AND-PASSWORD',
+                            resContext: 'SIGNUP_WITH_EMAIL_AND_PASSWORD',
                             resDescription: 'User has been successfully created'
                         });
                     })
@@ -32,7 +32,7 @@ module.exports = function signUpFirebaseAccountRoute(req, res) {
                         console.log(error);
                         res.send({
                             statusCode: 403,
-                            resContext: 'SIGNUP-VERIFICATION-EMAIL',
+                            resContext: 'SIGNUP_VERIFICATION_EMAIL',
                             resDescription: 'Unable to send sign-up verification email'
                         });
                     })
@@ -57,7 +57,7 @@ module.exports = function signUpFirebaseAccountRoute(req, res) {
             }
             res.send({
                 statusCode: 403,
-                resContext: 'SIGNUP-WITH-EMAIL-AND-PASSWORD',
+                resContext: 'SIGNUP_WITH_EMAIL_AND_PASSWORD',
                 resDescription: resDescription
             });
         })

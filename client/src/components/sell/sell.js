@@ -38,7 +38,7 @@ function Sell(props) {
                 info: textbookInfo,
                 uid: userContext.userId
             }, res => {
-                console.log('Response from image upload: ', res);
+                console.log('Response from upload: ', res);
                 if(res.statusCode === 200) {
                     alert('Your book has been successfully uploaded');
                     props.history.push('/dashboard');

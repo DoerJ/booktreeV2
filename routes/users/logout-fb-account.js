@@ -18,7 +18,7 @@ module.exports = function logOutFirebaseAccountRoute(req, res) {
             if(!auth.currentUser) {
                 res.send({
                     statusCode: 200,
-                    resContext: 'LOGOUT-FIREBASE-ACCOUNT',
+                    resContext: 'LOGOUT_FIREBASE_ACCOUNT',
                     resDescription: 'You have successfully logged out'
                 })
             }
@@ -29,7 +29,7 @@ module.exports = function logOutFirebaseAccountRoute(req, res) {
             console.log(errorMessage);
             res.send({
                 statusCode: 403,
-                resContext: 'LOGOUT-FIREBASE-ACCOUNT',
+                resContext: 'LOGOUT_FIREBASE_ACCOUNT',
                 resDescription: 'Unable to log out'
             })
         })
