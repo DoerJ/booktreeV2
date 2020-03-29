@@ -2,7 +2,7 @@ export function dateDiff(history) {
     var result = '';
     var diff = Date.now() - history,
         minutes = 1000 * 60,
-        hours = mintues * 60,
+        hours = minutes * 60,
         days = hours * 24,
         months = days * 30,
         years = months * 12;
@@ -16,7 +16,7 @@ export function dateDiff(history) {
     if(_years >= 1) {
         result = parseInt(_years) + ' years ago';
     } else if(_months >= 1) {
-        result = parseInt(_month) + ' months ago';
+        result = parseInt(_months) + ' months ago';
     } else if(_days >= 1) {
         result = parseInt(_days) + ' days ago';
     } else if(_hours >= 1) {
