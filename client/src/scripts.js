@@ -4,6 +4,7 @@ export { apiConnector } from './services/apis/core-api-connector.js';
 export { userAPIs } from './services/apis/user-apis.js';
 export { uploadAPIs } from './services/apis/upload-apis.js';
 export { localStorageModel } from './services/storage/local-storage.js';
+export { dateDiff } from './services/date/date-diff.js';
 export { firebaseStorageModel } from './services/storage/firebase-storage.js';
 export { fileManager } from './services/file-manager/file-manager.js';
 export { history } from './index.js';

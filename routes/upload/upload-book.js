@@ -27,16 +27,16 @@ module.exports = function uploadRoute(req, res) {
             })
     });
 
-    var setBookOnDateRef = new Promise((resolve, reject) => {
-        db.collection('BooksOnDate').doc(bookInfo.uploadDate).set(bookInfo)
+    var setBooksByDateRef = new Promise((resolve, reject) => {
+        db.collection('BooksByDate').doc(bookInfo.uploadDate).set(bookInfo)
             .then(() => {
-                resolve(['bookOnDateRef', {
-                    resContext: 'SET_BOOKONDATEREF_WITH_UPLOAD',
-                    resDescription: 'BookOnDate has been updated with upload'
+                resolve(['booksByDateRef', {
+                    resContext: 'SET_BOOKSBYDATEREF_WITH_UPLOAD',
+                    resDescription: 'BooksByDate has been updated with upload'
                 }]);
             })
     });
-    Promise.all([setUserRef, setBookOnDateRef])
+    Promise.all([setUserRef, setBooksByDateRef])
         .then(values => {
             var response = { statusCode: 200 };
             for(let [key, val] of values) {
@@ -50,7 +50,7 @@ module.exports = function uploadRoute(req, res) {
             res.send({
                 statusCode: 403,
                 resContext: 'SET_REFS_WITH_UPLOAD',
-                resDescription: 'The book upload is unsuccessful'
+                resDescription: 'The book upload fails'
             })
         })
 }

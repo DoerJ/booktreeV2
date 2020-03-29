@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import '../../assets/css/sell.css';
 
 function Sell(props) {
-    // var required = ['type', 'title', 'author', 'edition', 'image'];
+    // var required = ['type', 'title', 'author', 'edition', 'price', 'image'];
     var required = ['type', 'title', 'image'];
     var textbookInfo = {
         type: 'textbook',
@@ -13,6 +13,7 @@ function Sell(props) {
         edition: '',
         school: '',
         course: '',
+        price: '',
         image: null,
         summary: ''
     }
@@ -82,6 +83,13 @@ function Sell(props) {
                             <label>Course</label>
                             <input className="form-control" type="text" placeholder="e.g: CMPT 365"
                             onChange={e => onUpdateTextbookInfo(e, 'course')} />
+                        </div>
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label>Price</label>
+                            <input className="form-control" text="text" placeholder="CAD $"
+                            onChange={e => onUpdateTextbookInfo(e, 'price')} />
                         </div>
                     </div>
                     <div className="form-row">
