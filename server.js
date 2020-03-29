@@ -4,22 +4,22 @@ const path = require('path');
 const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
-const client = redis.createClient();
+const client = require('redis').createClient(process.env.REDIS_URL);
 
 // Change to 'client/build' upon deployment
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.set('trust proxy');
 
-app.use(session({
-    secret: 'SECRET_SESSION_MESSAGE',
-    store: new redisStore({
-        host: 'localhost',
-        port: 6379,
-        client: client
-    }),
-    saveUninitialized: false,
-    resave: false
-}));
+// app.use(session({
+//     secret: 'SECRET_SESSION_MESSAGE',
+//     store: new redisStore({
+//         host: 'localhost',
+//         port: 6379,
+//         client: client
+//     }),
+//     saveUninitialized: false,
+//     resave: false
+// }));
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -34,10 +34,6 @@ app.use(bodyParser.json());
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-
-console.log('Checking session key...');
-const redirectRoutes = require('./routes/redirect/');
-app.use('/api/session', redirectRoutes);
 
 const userRoutes = require('./routes/users/');
 app.use('/api/user', userRoutes);
