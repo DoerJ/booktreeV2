@@ -36,11 +36,14 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 console.log('Checking session key...');
-var redirectRoutes = require('./routes/redirect/');
+const redirectRoutes = require('./routes/redirect/');
 app.use('/api/session', redirectRoutes);
 
-var userRoutes = require('./routes/users/');
+const userRoutes = require('./routes/users/');
 app.use('/api/user', userRoutes);
+
+const uploadRoutes = require('./routes/upload/');
+app.use('/api/upload', uploadRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

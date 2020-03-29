@@ -1,5 +1,5 @@
 import React from 'react';
-import { fileManager, userAPIs, localStorageModel } from 'scripts.js';
+import { fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
 import { withRouter } from 'react-router-dom';
 import '../../assets/css/sell.css';
 
@@ -34,7 +34,7 @@ function Sell(props) {
         }
         fileManager.uploadImage(textbookInfo.image, (downloadUrl) => {
             textbookInfo.image = downloadUrl;
-            userAPIs.upload({
+            uploadAPIs.upload_book({
                 info: textbookInfo,
                 uid: userContext.userId
             }, res => {

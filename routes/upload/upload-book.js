@@ -28,7 +28,7 @@ module.exports = function uploadRoute(req, res) {
     });
 
     var setBookOnDateRef = new Promise((resolve, reject) => {
-        db.collection('BookOnDate').doc(bookInfo.uploadDate).set(bookInfo)
+        db.collection('BooksOnDate').doc(bookInfo.uploadDate).set(bookInfo)
             .then(() => {
                 resolve(['bookOnDateRef', {
                     resContext: 'SET_BOOKONDATEREF_WITH_UPLOAD',

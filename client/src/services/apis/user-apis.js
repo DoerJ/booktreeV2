@@ -9,8 +9,5 @@ export const userAPIs = {
     },
     logout: (params, success, error) => {
         apiConnector('POST', '/api/user/logout', params, success, error);
-    },
-    upload: (params, success, error) => {
-        apiConnector('POST', '/api/user/upload', params, success, error);
     }
 }
