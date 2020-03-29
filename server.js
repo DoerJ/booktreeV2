@@ -3,8 +3,8 @@ const app = express();
 const path = require('path');
 const redis = require('redis');
 const session = require('express-session');
-const redisStore = require('connect-redis')(session);
-const client = require('redis').createClient(process.env.REDIS_URL);
+// const redisStore = require('connect-redis')(session);
+// const client = require('redis').createClient(process.env.REDIS_URL);
 
 // Change to 'client/build' upon deployment
 app.use(express.static(path.join(__dirname, 'client/build')));
