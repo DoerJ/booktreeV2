@@ -3,11 +3,14 @@ import { fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
 import { withRouter } from 'react-router-dom';
 import '../../assets/css/sell.css';
 
+const uidGenerator = require('uid-generator');
+
 function Sell(props) {
     // var required = ['type', 'title', 'author', 'edition', 'price', 'image'];
     var required = ['type', 'title', 'image'];
     var textbookInfo = {
         type: 'textbook',
+        book_id: '',
         title: '',
         author: '',
         edition: '',
@@ -35,19 +38,23 @@ function Sell(props) {
         }
         fileManager.uploadImage(textbookInfo.image, (downloadUrl) => {
             textbookInfo.image = downloadUrl;
-            uploadAPIs.upload_book({
-                info: textbookInfo,
-                uid: userContext.userId
-            }, res => {
-                console.log('Response from upload: ', res);
-                if(res.statusCode === 200) {
-                    alert('Your book has been successfully uploaded');
-                    props.history.push('/dashboard');
-                    props.navHandler('');
-                }
-            }, res => {
-                throw new Error(res.resDescription);
-            });
+            const uidgen = new uidGenerator();
+            uidgen.generate().then(id => {
+                textbookInfo.book_id = id;
+                uploadAPIs.upload_book({
+                    info: textbookInfo,
+                    uid: userContext.userId
+                }, res => {
+                    console.log('Response from upload: ', res);
+                    if(res.statusCode === 200) {
+                        alert('Your book has been successfully uploaded');
+                        props.history.push('/dashboard');
+                        props.navHandler('');
+                    }
+                }, res => {
+                    throw new Error(res.resDescription);
+                });
+            })
         });
     }
 

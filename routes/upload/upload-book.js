@@ -8,15 +8,16 @@ module.exports = function uploadRoute(req, res) {
         ...uploadInfo.info,
         uploadDate: new Date(Date.now()).toString()
     }
-    const uid = uploadInfo.uid;
     const uploadType = bookInfo.type;
 
     // Merge upload into user doc
-    var userRef = db.collection('Users').doc(uid);
+    var userRef = db.collection('Users').doc(uploadInfo.uid);
     var setUserRef = new Promise((resolve, reject) => {
         userRef.set({
             uploads: {
-                [uploadType]: bookInfo
+                [uploadType]: {
+                    [bookInfo.book_id]: bookInfo
+                }
             }
         }, { merge: true })
             .then(() => {

@@ -15,7 +15,7 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                     resDescription: 'Email not verified'
                 });
             } else {
-                // req.session.key = auth.currentUser.uid;
+                req.session.key = auth.currentUser.uid;
                 res.send({
                     statusCode: 200,
                     resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',

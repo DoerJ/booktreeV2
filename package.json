@@ -27,6 +27,7 @@
     "firebase": "^7.9.3",
     "redis": "^3.0.2",
     "redis-cli": "^1.4.0",
-    "redis-server": "^1.2.2"
+    "redis-server": "^1.2.2",
+    "uid-generator": "^2.0.0"
   }
 }
