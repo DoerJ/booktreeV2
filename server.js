@@ -7,7 +7,7 @@ const redisStore = require('connect-redis')(session);
 const client = redis.createClient();
 
 // Change to 'client/build' upon deployment
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client')));
 app.set('trust proxy');
 
 app.use(session({
