@@ -1,4 +1,4 @@
-const fbServices = require('../../firebase/index.js');
+const fbServices = require('../../firebase/firebase.js');
 const auth = fbServices.auth;
 const db = fbServices.db;
 
