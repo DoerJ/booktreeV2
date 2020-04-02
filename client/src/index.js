@@ -8,7 +8,7 @@ import {
     Route
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './assets/css/styles.css';
 
 const Main = lazy(() => import ('./components/main/main'));
 const SignUp = lazy(() => import ('./components/signup/signup'));

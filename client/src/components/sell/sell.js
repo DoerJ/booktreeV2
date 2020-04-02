@@ -1,9 +1,7 @@
 import React from 'react';
-import { fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
+import { generateToken, fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
 import { withRouter } from 'react-router-dom';
 import '../../assets/css/sell.css';
-
-const uidGenerator = require('uid-generator');
 
 function Sell(props) {
     // var required = ['type', 'title', 'author', 'edition', 'price', 'image'];
@@ -18,7 +16,8 @@ function Sell(props) {
         course: '',
         price: '',
         image: null,
-        summary: ''
+        summary: '',
+        status: 'AVAILABLE'
     }
 
     function onUpdateTextbookInfo(e, key) {
@@ -38,31 +37,28 @@ function Sell(props) {
         }
         fileManager.uploadImage(textbookInfo.image, (downloadUrl) => {
             textbookInfo.image = downloadUrl;
-            const uidgen = new uidGenerator();
-            uidgen.generate().then(id => {
-                textbookInfo.book_id = id;
-                uploadAPIs.upload_book({
-                    info: textbookInfo,
-                    uid: userContext.userId
-                }, res => {
-                    console.log('Response from upload: ', res);
-                    if(res.statusCode === 200) {
-                        alert('Your book has been successfully uploaded');
-                        props.history.push('/dashboard');
-                        props.navHandler('');
-                    }
-                }, res => {
-                    throw new Error(res.resDescription);
-                });
-            })
+            textbookInfo.book_id = generateToken(16);
+            uploadAPIs.upload_book({
+                info: textbookInfo,
+                uid: userContext.userId
+            }, res => {
+                console.log('Response from upload: ', res);
+                if(res.statusCode === 200) {
+                    alert('Your book has been successfully uploaded');
+                    props.history.push('/dashboard');
+                    props.navHandler('');
+                }
+            }, res => {
+                throw new Error(res.resDescription);
+            });
         });
     }
 
     return (
         <div>
             <h2>Sell</h2>
-            <div id="textbook-sell">
-                <form id="textbook-sell-form">
+            <section id="textbook-upload-section">
+                <form id="textbook-upload-form">
                     <div className="form-group">
                         <label>Book title</label>
                         <input className="form-control" type="text" placeholder="Book name"
@@ -113,7 +109,7 @@ function Sell(props) {
                         <div className="btn btn-primary" id="sell-submit-btn" onClick={e => onSubmitTextbookInfo(e)}>Upload</div>
                     </div>
                 </form>
-            </div>
+            </section>
         </div>
     );
 }
