@@ -5,7 +5,7 @@
     padding: 10px;
     cursor: pointer;
 }
-#dashboard-nav-bar > li {
+#dashboard-nav-list > li {
     display: inline-block;
     margin: 20px;
     text-decoration: none;

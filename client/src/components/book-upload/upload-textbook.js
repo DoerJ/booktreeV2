@@ -1,9 +1,9 @@
 import React from 'react';
 import { generateToken, fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
 import { withRouter } from 'react-router-dom';
-import '../../assets/css/sell.css';
+import '../../assets/css/upload-textbook.css';
 
-function Sell(props) {
+function UploadTextbook(props) {
     // var required = ['type', 'title', 'author', 'edition', 'price', 'image'];
     var required = ['type', 'title', 'image'];
     var textbookInfo = {
@@ -114,4 +114,4 @@ function Sell(props) {
     );
 }
 
-export default withRouter(Sell);
+export default withRouter(UploadTextbook);

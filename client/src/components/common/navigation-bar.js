@@ -3,16 +3,15 @@ import { render } from 'react-dom';
 import { withRouter } from 'react-router';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Dashboard, Sell, MeInfo, userAPIs, localStorageModel } from 'scripts.js';
-import '../../assets/css/nav-bar.css';
+import { Dashboard, UploadTextbook, AboutMe, userAPIs, localStorageModel } from 'scripts.js';
+import '../../assets/css/navigation-bar.css';
 
 class NavigationBar extends Component {
     constructor(props) {
         super(props);
-        var urlStrings = window.location.href.trim().split('/');
-        var urlSubNav = urlStrings[urlStrings.length - 1];
+        const pathnames = window.location.href.split('/');
         this.state = {
-            navOnClick: urlSubNav
+            navOnVisit: pathnames[pathnames.length - 1]
         }
     }
 
@@ -23,41 +22,42 @@ class NavigationBar extends Component {
             localStorageModel.removeItem('currentUser');
             this.props.history.push('/log-in');
         }, (res) => {
-            if(res.statusCode === 403) alert(res.resDescription);
-            else throw new Error(res.resDescription);
+            if(res.statusCode === 403) {
+                alert(res.resDescription);
+            } else {
+                throw new Error(res.resDescription);
+            }
         })
     }
 
-    handleNavigation = navKey => {
+    handleNavigation = nav_key => {
         this.setState({
-            navOnClick: navKey
+            navOnVisit: nav_key
         });
     }
 
     renderDashboardView = () => {
-        switch (this.state.navOnClick) {
-            case '':
-                return <div><Dashboard /></div>;
-            case 'sell':
-                return <div><Sell history={this.props.history} navHandler={this.handleNavigation} /></div>;
+        switch (this.state.navOnVisit) {
+            case 'dashboard':
+                return <Dashboard />;
+            case 'upload-textbook':
+                return <UploadTextbook history={this.props.history} navHandler={this.handleNavigation} />;
             case 'me-info':
-                return <div><MeInfo /></div>;
-            default:
-                return <div><Dashboard /></div>;
+                return <AboutMe />;
         }
     }
 
     render() {
         return (
             <div>
-                <Navbar className="nav-bar" bg="light">
+                <Navbar id="nav-bar" bg="light">
                     <Navbar.Brand href="/dashboard">Booktree</Navbar.Brand>
-                    <ul id="dashboard-nav-bar">
+                    <ul id="dashboard-nav-list">
                         <li id="dashboard-nav-home">
-                            <Link to="/dashboard" onClick={e => this.handleNavigation('')}>Home</Link>
+                            <Link to="/dashboard" onClick={e => this.handleNavigation('dashboard')}>Home</Link>
                         </li>
                         <li id="dashboard-nav-sell">
-                            <Link to="/dashboard/sell" onClick={e => this.handleNavigation('sell')}>Sell</Link>
+                            <Link to="/dashboard/upload-textbook" onClick={e => this.handleNavigation('upload-textbook')}>Upload Textbook</Link>
                         </li>
                         <li id="dashboard-nav-me-info">
                             <Link to="/dashboard/me-info" onClick={e => this.handleNavigation('me-info')}>Me</Link>
@@ -65,7 +65,7 @@ class NavigationBar extends Component {
                     </ul>
                     <Button variant="outline-success" onClick={e => this.onLogOutAccount(e)}>Log Out</Button>
                 </Navbar>
-                <div className="dashboard-view-container">
+                <div id="dashboard-view-container">
                     {this.renderDashboardView()}
                 </div>
             </div>
