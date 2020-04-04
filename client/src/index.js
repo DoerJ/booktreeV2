@@ -13,7 +13,7 @@ import './assets/css/styles.css';
 const Main = lazy(() => import ('./components/main/main'));
 const SignUp = lazy(() => import ('./components/signup/signup'));
 const LogIn = lazy(() => import ('./components/login/login'));
-const NavigationBar = lazy(() => import ('./components/common/navigation-bar.js'));
+const NavigationBar = lazy(() => import ('./components/common/navigationbar.js'));
 
 export const history = createBrowserHistory();
 

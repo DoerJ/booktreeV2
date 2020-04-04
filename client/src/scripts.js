@@ -1,24 +1,24 @@
 // Centralize services and components
 // Services
-export { apiConnector } from './services/apis/core-api-connector.js';
-export { userAPIs } from './services/apis/user-apis.js';
-export { uploadAPIs } from './services/apis/upload-apis.js';
-export { localStorageModel } from './services/storage/local-storage.js';
-export { dateDiff } from './services/utils/date-diff.js';
-export { generateToken } from './services/utils/token-generator.js';
-export { firebaseStorageModel } from './services/storage/firebase-storage.js';
-export { fileManager } from './services/file-manager/file-manager.js';
+export { apiConnector } from './services/apis/apiconnector.js';
+export { userAPIs } from './services/apis/userapis.js';
+export { uploadAPIs } from './services/apis/uploadapis.js';
+export { localStorageModel } from './services/storage/localstorage.js';
+export { dateDiff } from './services/utils/datediff.js';
+export { generateToken } from './services/utils/tokengenerator.js';
+export { firebaseStorageModel } from './services/storage/firebasestorage.js';
+export { fileManager } from './services/filemanager/filemanager.js';
 export { history } from './index.js';
 
 // Context
-export { contextValues } from './context/context-values.js';
+export { contextValues } from './context/contextvals.js';
 export { default as UserContext } from './context/context.js';
 
 // Components
 export { default as Dashboard } from './components/dashboard/dashboard.js';
 export { default as LogIn } from './components/login/login.js';
 export { default as Main } from './components/main/main.js';
-export { default as AboutMe } from './components/about-me/main.js';
-export { default as UploadTextbook } from './components/book-upload/upload-textbook.js';
+export { default as AboutMe } from './components/aboutme/main.js';
+export { default as UploadTextbook } from './components/bookupload/uploadtextbook.js';
 export { default as SignUp } from './components/signup/signup.js';
-export { default as NavigationBar } from './components/common/navigation-bar.js';
+export { default as NavigationBar } from './components/common/navigationbar.js';
