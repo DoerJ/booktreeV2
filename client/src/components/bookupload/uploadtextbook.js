@@ -46,7 +46,7 @@ function UploadTextbook(props) {
                 if(res.statusCode === 200) {
                     alert('Your book has been successfully uploaded');
                     props.history.push('/dashboard');
-                    props.navHandler('');
+                    props.navHandler('dashboard');
                 }
             }, res => {
                 throw new Error(res.resDescription);

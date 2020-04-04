@@ -1,8 +1,8 @@
-// Centralize services and components
 // Services
 export { apiConnector } from './services/apis/apiconnector.js';
 export { userAPIs } from './services/apis/userapis.js';
 export { uploadAPIs } from './services/apis/uploadapis.js';
+export { bookAPIs } from './services/apis/bookapis.js';
 export { localStorageModel } from './services/storage/localstorage.js';
 export { dateDiff } from './services/utils/datediff.js';
 export { generateToken } from './services/utils/tokengenerator.js';

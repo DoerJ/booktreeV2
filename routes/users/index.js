@@ -11,4 +11,7 @@ router.post('/login', logInFirebaseAccountRoute);
 const logOutFirebaseAccountRoute = require('./fblogout');
 router.post('/logout', logOutFirebaseAccountRoute);
 
+const getMeInfoRoute = require('./getmeinfo');
+router.get('/get-meinfo', getMeInfoRoute);
+
 module.exports = router;

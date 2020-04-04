@@ -12,7 +12,7 @@ export const userAPIs = {
     },
     get_meinfo: (params, success, error) => {
         apiConnector('GET', '/api/user/get-meinfo', params, success, error);
-    }
+    },
     get_mestats: (params, success, error) => {
         apiConnector('GET', '/api/user/get-mestats', params, success, error);
     }
