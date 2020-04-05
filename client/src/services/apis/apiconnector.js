@@ -6,7 +6,7 @@ export function apiConnector(method, api, params, success, error) {
         }
         api += url.search;
     }
-    let config = {
+    var config = {
         method: method,
         mode: 'cors',
         headers: {
@@ -14,7 +14,7 @@ export function apiConnector(method, api, params, success, error) {
         },
         body: (method === 'GET') ? null : JSON.stringify(params)
     }
-    console.log('Calling API service');
+    console.log('Calling API service: ', api);
     fetch(api, config)
         .then(res => {
             return res.json();

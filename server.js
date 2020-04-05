@@ -41,6 +41,9 @@ app.use('/api/user', userRoutes);
 const uploadRoutes = require('./routes/upload/');
 app.use('/api/upload', uploadRoutes);
 
+const bookRoutes = require('./routes/books/');
+app.use('/api/book', bookRoutes);
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`LISTENING TO PORT ${port}...`);

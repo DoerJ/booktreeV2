@@ -1,5 +1,4 @@
 const fbServices = require('../../firebase/firebase.js');
-const auth = fbServices.auth;
 const db = fbServices.db;
 
 module.exports = function uploadRoute(req, res) {

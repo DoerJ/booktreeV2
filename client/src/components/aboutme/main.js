@@ -31,7 +31,7 @@ class AboutMe extends Component {
     getMeinfoListView = () => {
         switch (this.state.navOnVisit) {
             case 'uploads':
-                return <MeUploads />
+                return <MeUploads uid={this.userContext.userId} />
                 break;
             case 'shopping-cart':
                 return <p>shopping cart</p>

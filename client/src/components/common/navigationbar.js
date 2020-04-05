@@ -9,9 +9,8 @@ import '../../assets/css/navigation-bar.css';
 class NavigationBar extends Component {
     constructor(props) {
         super(props);
-        const pathnames = window.location.href.split('/');
         this.state = {
-            navOnVisit: pathnames[pathnames.length - 1]
+            navOnVisit: window.location.pathname.split('/')[2]
         }
     }
 

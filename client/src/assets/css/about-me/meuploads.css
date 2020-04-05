@@ -1,0 +1,9 @@
+#meuploads-list > li {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    text-decoration: none;
+}
+.meuploads-list-item-date {
+    margin-left: 50px;
+}
