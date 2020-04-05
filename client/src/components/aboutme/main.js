@@ -2,56 +2,66 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { userAPIs, localStorageModel } from 'scripts.js';
+import { userAPIs, localStorageModel, MeUploads } from 'scripts.js';
 import '../../assets/css/about-me/main.css';
 
 class AboutMe extends Component {
 
     constructor(props) {
         super(props);
+
+        const nav = window.location.pathname.split('/')[3];
         this.state = {
-            mestats: {}
+            mestats: {},
+            navOnVisit: nav ? nav : 'uploads'
         }
         this.userContext = JSON.parse(localStorageModel.getItem('currentUser'));
     }
 
     componentDidMount = () => {
-        // // Retrieve my info and stats
-        // var getMeInfo = new Promise((resolve, reject) => {
-        //     userAPIs.get_meinfo({ uid: this.userContext.userId }, res => {
-        //         resolve(['meinfo', res.resData]);
-        //     }, res => {
-        //         reject(res.resDescription);
-        //     })
-        // });
-        // // TO DO: get stats
-        // Promise.all([getMeInfo])
-        //     .then(values => {
-        //         for(let [key, val] of values) {
-        //             this.setState({
-        //                 [key]: val
-        //             });
-        //         }
-        //     })
+        // TO DO: Retrieve me-stats
+    }
+
+    onHandleNavigation = nav_key => {
+        this.setState({
+            navOnVisit: nav_key
+        });
+    }
+
+    getMeinfoListView = () => {
+        switch (this.state.navOnVisit) {
+            case 'uploads':
+                return <MeUploads />
+                break;
+            case 'shopping-cart':
+                return <p>shopping cart</p>
+                break;
+        }
     }
 
     render() {
         return (
             <div>
-                <section id="myinfo-presentation-section">User presentation
+                <section id="meinfo-presentation-section">User presentation
                     <h1>{this.userContext.username}</h1>
                 </section>
-                <div id="myinfo-content-container">
-                    <section id="myinfo-nav-section">
+                <div id="meinfo-content-container">
+                    <section id="meinfo-nav-section">
                         <Navbar id="nav-bar" bg="light">
-                            <ul id="myinfo-nav-list">
-                                <li id="myinfo-nav-upload">
-                                    <Link to="/dashboard/me-info/uploads">My uploads</Link>
+                            <ul id="meinfo-nav-list">
+                                <li id="meinfo-nav-upload">
+                                    <Link to="/dashboard/me-info" onClick={e => this.onHandleNavigation('uploads')}>My uploads</Link>
+                                </li>
+                                <li id="meinfo-nav-shopping-cart">
+                                    <Link to="/dashboard/me-info/shopping-cart" onClick={e => this.onHandleNavigation('shopping-cart')}>Shopping cart</Link>
                                 </li>
                             </ul>
                         </Navbar>
+                        <div id="meinfo-list-container">
+                            {this.getMeinfoListView()}
+                        </div>
                     </section>
-                    <section id="myinfo-stats-section">stats
+                    <section id="meinfo-stats-section">stats
                     </section>
                 </div>
             </div>

@@ -13,7 +13,6 @@ export default function LogIn(props) {
     }
 
     function onLogInAccount(e) {
-        console.log('Props: ', props);
         userAPIs.login({
             email: loginCredentials.email,
             password: loginCredentials.password

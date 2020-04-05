@@ -34,7 +34,6 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                             ...values,
                             username: data.username
                         };
-                        console.log('successful login')
                         res.send({
                             statusCode: 200,
                             resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
