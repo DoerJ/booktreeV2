@@ -17,11 +17,11 @@ class NavigationBar extends Component {
 
     onLogOutAccount = (e) => {
         e.preventDefault();
-        userAPIs.logout({}, (res) => {
+        userAPIs.logout({}, res => {
             console.log('Response from logout: ', res);
             localStorageModel.removeItem('currentUser');
             this.props.history.push('/log-in');
-        }, (res) => {
+        }, res => {
             if(res.statusCode === 403) {
                 alert(res.resDescription);
             } else {

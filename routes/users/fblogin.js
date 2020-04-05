@@ -3,9 +3,11 @@ const auth = fbServices.auth;
 const db = fbServices.db;
 
 module.exports = function logInFirebaseAccountRoute(req, res) {
-    let userLogInCredentials = req.body;
-    let email = userLogInCredentials.email;
-    let password = userLogInCredentials.password;
+    const userLogInCredentials = req.body;
+    const email = userLogInCredentials.email;
+    const password = userLogInCredentials.password;
+    var uid;
+
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
             if(!auth.currentUser.emailVerified) {
@@ -15,22 +17,43 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                     resDescription: 'Email not verified'
                 });
             } else {
-                req.session.key = auth.currentUser.uid;
-                res.send({
-                    statusCode: 200,
-                    resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
-                    resDescription: 'Successfully logged in',
-                    userId: auth.currentUser.uid,
+                uid = auth.currentUser.uid;
+                req.session.key = uid;
+                return ({
+                    userId: uid,
                     loginTime: new Date(Date.now()).toString()
                 })
             }
-        }).catch(error => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log('Error code: ', errorCode);
-            console.log('Error message', errorMessage);
+        })
+        .then(values => {
+            db.collection('Users').doc(uid).get()
+                .then(doc => {
+                    if(doc.exists) {
+                        const data = doc.data();
+                        let resData = {
+                            ...values,
+                            username: data.username
+                        };
+                        console.log('successful login')
+                        res.send({
+                            statusCode: 200,
+                            resContext: 'LOGIN_WITH_EMAIL_AND_PASSWORD',
+                            resDescription: 'Successfully logged in',
+                            resData: resData
+                        });
+                    } else {
+                        res.send({
+                            statusCode: 404,
+                            resContext: 'GET_USER_LOGIN_INFO',
+                            resDescription: 'The user document doesn\'t exist'
+                        });
+                    }
+                })
+        })
+        .catch(error => {
             let resDescription = '';
-            switch (errorCode) {
+            console.log(error.message);
+            switch (error.code) {
                 case 'auth/invalid-email':
                     resDescription = 'Invalid email';
                     break;
@@ -50,5 +73,4 @@ module.exports = function logInFirebaseAccountRoute(req, res) {
                 resDescription: resDescription
             });
         })
-
 }

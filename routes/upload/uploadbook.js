@@ -46,12 +46,10 @@ module.exports = function uploadRoute(req, res) {
             res.send(response);
         })
         .catch(error => {
-            console.log('Error code with upload: ', error.code);
-            console.log('Error message with upload: ', error.message);
             res.send({
                 statusCode: 403,
                 resContext: 'SET_REFS_WITH_UPLOAD',
-                resDescription: 'The book upload fails'
+                resDescription: `Error of uploading book: ${error.message}`
             })
         })
 }

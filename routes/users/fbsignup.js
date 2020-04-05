@@ -39,8 +39,6 @@ module.exports = function signUpFirebaseAccountRoute(req, res) {
             })
         }).catch(error => {
             let resDescription = '';
-            console.log(error.code);
-            console.log(error.message);
             switch (error.code) {
                 case 'auth/invalid-email':
                     resDescription = 'Invalid email';

@@ -14,7 +14,7 @@ export function apiConnector(method, api, params, success, error) {
         },
         body: (method === 'GET') ? null : JSON.stringify(params)
     }
-    console.log('api: ', api);
+    console.log('Calling API service');
     fetch(api, config)
         .then(res => {
             return res.json();

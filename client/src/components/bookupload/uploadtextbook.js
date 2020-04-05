@@ -26,7 +26,6 @@ function UploadTextbook(props) {
     }
 
     function onSubmitTextbookInfo(e) {
-        console.log('textbookInfo: ', textbookInfo);
         const userContext = JSON.parse(localStorageModel.getItem('currentUser'));
         console.log('UserContext: ', userContext);
         for(let rq of required) {
@@ -35,7 +34,7 @@ function UploadTextbook(props) {
                 return;
             }
         }
-        fileManager.uploadImage(textbookInfo.image, (downloadUrl) => {
+        fileManager.uploadImage(textbookInfo.image, downloadUrl => {
             textbookInfo.image = downloadUrl;
             textbookInfo.book_id = generateToken(16);
             uploadAPIs.upload_book({
