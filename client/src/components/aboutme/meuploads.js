@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { bookAPIs, dateDiff } from 'scripts';
+import { bookAPIs, dateDiff, Cache } from 'scripts';
 import '../../assets/css/about-me/meuploads.css';
 
 class MeUploads extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            cache_id: 'fetching-me-uploads',
             loaded: false,
-            meUploadsList: {}
+            meUploadsList: {},
         };
     }
 
     componentDidMount = () => {
-        bookAPIs.get_meuploads({ uid: this.props.uid }, res => {
+        bookAPIs.get_meuploads({ uid: this.props.uid, cache_id: this.state.cache_id }, res => {
             this.setState({
                 loaded: true,
                 meUploadsList: res.resData

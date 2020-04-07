@@ -23,3 +23,6 @@ export { default as SignUp } from './components/signup/signup.js';
 export { default as NavigationBar } from './components/common/navigationbar.js';
 export { default as AboutMe } from './components/aboutme/main.js';
 export { default as MeUploads } from './components/aboutme/meuploads.js';
+
+// Factories
+export { default as Cache } from './factory/cache/cachefactory.js';

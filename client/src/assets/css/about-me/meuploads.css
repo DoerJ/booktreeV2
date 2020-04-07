@@ -1,6 +1,6 @@
 #meuploads-list > li {
+    display: block;
     position: relative;
-    display: inline-block;
     margin: 20px;
     text-decoration: none;
 }
