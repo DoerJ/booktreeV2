@@ -38,7 +38,10 @@ export function apiConnector(method, api, params, success, error) {
                         .then(res => {
                             if(res.statusCode === 200) {
                                 let blob = new Blob([JSON.stringify(res)], { type: 'application/json' });
-                                let response = new Response(blob, { 'status': 200, 'statusText': 'FETCHING_CACHE_OK' });
+                                let response = new Response(blob, {
+                                    'status': 200,
+                                    'statusText': 'FETCHING_CACHE_OK' 
+                                });
                                 cache.put(api, response).then(() => success(res))
                             } else {
                                 error(res);
@@ -52,7 +55,6 @@ export function apiConnector(method, api, params, success, error) {
         fetch(api, config)
             .then(res => res.json())
             .then(res => {
-                // TO DO: Put req and res pair in cache
                 if(res.statusCode === 200) {
                     success(res);
                 } else {
