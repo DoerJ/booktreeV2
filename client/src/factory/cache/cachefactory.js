@@ -4,7 +4,7 @@ export default class Cache {
         this.cache_storage = null;
     }
 
-    static function openCache() {
+    static openCache() {
         return new Promise((resolve, reject) => {
             caches.open(this.cache_id).then(cache => {
                 resolve(cache);
@@ -12,7 +12,7 @@ export default class Cache {
         })
     }
 
-    function createCache(cache) {
+    createCache = function(cache) {
         this.cache_storage = cache;
     }
 }
