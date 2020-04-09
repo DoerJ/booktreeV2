@@ -7,7 +7,7 @@ class MeUploads extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cache_id: 'fetching-me-uploads',
+            cache_id: 'fetching-uploads',
             loaded: false,
             meUploadsList: {},
         };

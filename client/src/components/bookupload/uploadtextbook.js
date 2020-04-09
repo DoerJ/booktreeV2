@@ -1,9 +1,17 @@
 import React from 'react';
-import { generateToken, fileManager, uploadAPIs, localStorageModel } from 'scripts.js';
+import {
+    generateToken,
+    fileManager,
+    uploadAPIs,
+    localStorageModel,
+    cacheRepository,
+    cacheManager
+} from 'scripts.js';
 import { withRouter } from 'react-router-dom';
 import '../../assets/css/upload-textbook.css';
 
 function UploadTextbook(props) {
+    const cache_repo = 'upload_textbook';
     // var required = ['type', 'title', 'author', 'edition', 'price', 'image'];
     var required = ['type', 'title', 'image'];
     var textbookInfo = {
@@ -37,19 +45,27 @@ function UploadTextbook(props) {
         fileManager.uploadImage(textbookInfo.image, downloadUrl => {
             textbookInfo.image = downloadUrl;
             textbookInfo.book_id = generateToken(16);
-            uploadAPIs.upload_book({
-                info: textbookInfo,
-                uid: userContext.userId
-            }, res => {
-                console.log('Response from upload: ', res);
-                if(res.statusCode === 200) {
-                    alert('Your book has been successfully uploaded');
-                    props.history.push('/dashboard');
-                    props.navHandler('dashboard');
+
+            // Clean cache
+            cacheManager.cleanCaches(cacheRepository[cache_repo]).then(done => {
+                if(done) {
+                    uploadAPIs.upload_book({
+                        info: textbookInfo,
+                        uid: userContext.userId
+                    }, res => {
+                        console.log('Response from upload: ', res);
+                        if(res.statusCode === 200) {
+                            alert('Your book has been successfully uploaded');
+                            props.history.push('/dashboard');
+                            props.navHandler('dashboard');
+                        }
+                    }, res => {
+                        throw new Error(res.resDescription);
+                    });
+                } else {
+                    alert('Cache not cleaned');
                 }
-            }, res => {
-                throw new Error(res.resDescription);
-            });
+            })
         });
     }
 

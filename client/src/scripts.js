@@ -8,6 +8,8 @@ export { dateDiff } from './services/utils/datediff.js';
 export { generateToken } from './services/utils/tokengenerator.js';
 export { firebaseStorageModel } from './services/storage/firebasestorage.js';
 export { fileManager } from './services/filemanager/filemanager.js';
+export { cacheRepository } from './services/cache/cacherepo.js';
+export { cacheManager } from './services/cache/cachemanager.js';
 export { history } from './index.js';
 
 // Context
