@@ -33,6 +33,7 @@ class MeUploads extends Component {
                 <li className="meuploads-list-item" key={val}>
                     <span className="meuploads-list-item-title">{textbookUploadsItem.title}</span>
                     <span className="meuploads-list-item-date">{dateDiff(Date.parse(textbookUploadsItem.uploadDate))}</span>
+                    <button className="meuploads-list-item-delete"}>Delete</button>
                 </li>
             );
         });

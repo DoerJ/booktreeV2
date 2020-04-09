@@ -3,6 +3,12 @@
 A refactored Booktree platform in production
 
 ### Logs
+> 04/08/2020
+
+* Added get_meuplaods to AboutMe page
+* Added Cache service
+* Cached API request and response pair in apiconnector 
+
 > 03/29/2020
 
 * Finished Sell page
