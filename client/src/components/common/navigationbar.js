@@ -9,8 +9,9 @@ import '../../assets/css/navigation-bar.css';
 class NavigationBar extends Component {
     constructor(props) {
         super(props);
+        var nav = window.location.pathname.split('/')[2];
         this.state = {
-            navOnVisit: window.location.pathname.split('/')[2]
+            navOnVisit: nav ? nav : 'dashboard'
         }
     }
 

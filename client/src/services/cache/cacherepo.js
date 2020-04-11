@@ -4,5 +4,8 @@
 export const cacheRepository = {
     upload_textbook: [
         'fetching-uploads'
+    ],
+    delete_uploads: [
+        'fetching-uploads'
     ]
 }

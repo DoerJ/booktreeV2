@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { bookAPIs, dateDiff, Cache } from 'scripts';
+import {
+    bookAPIs,
+    dateDiff,
+    cacheRepository,
+    cacheManager,
+    localStorageModel
+ } from 'scripts';
 import '../../assets/css/about-me/meuploads.css';
 
 class MeUploads extends Component {
@@ -24,6 +30,29 @@ class MeUploads extends Component {
         })
     }
 
+    onHandleDeleteUploadItem = (e, key) => {
+        if(window.confirm('Are you sure to delete this item?')) {
+            const userContext = JSON.parse(localStorageModel.getItem('currentUser'));
+            cacheManager.cleanCaches(cacheRepository.delete_uploads).then(done => {
+                if(done) {
+                    const data = {
+                        uid: userContext.userId,
+                        book_id: key,
+                        upload_date: this.state.meUploadsList.textbook[key].uploadDate,
+                        type: 'textbook'
+                    }
+                    bookAPIs.delete_meuploads(data, res => {
+                        alert(res.resDescription);
+                        delete this.state.meUploadsList.textbook[key];
+                        this.setState(this.state);
+                    }, res => {})
+                } else {
+                    alert('Cache not cleaned');
+                }
+            })
+        }
+    }
+
     getMeUploadsItem = () => {
         // TO DO: Add other types of uploads
         const textbookUploadsList = this.state.meUploadsList.textbook;
@@ -33,7 +62,7 @@ class MeUploads extends Component {
                 <li className="meuploads-list-item" key={val}>
                     <span className="meuploads-list-item-title">{textbookUploadsItem.title}</span>
                     <span className="meuploads-list-item-date">{dateDiff(Date.parse(textbookUploadsItem.uploadDate))}</span>
-                    <button className="meuploads-list-item-delete">Delete</button>
+                    <button className="meuploads-list-item-delete" onClick={e => this.onHandleDeleteUploadItem(e, val)}>Delete</button>
                 </li>
             );
         });
