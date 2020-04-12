@@ -8,4 +8,7 @@ router.get('/me-uploads', getMeUploadsRoute);
 const deleteMeUploadsRoute = require('./deletemeuploads');
 router.post('/delete-uploads', deleteMeUploadsRoute);
 
+const getUploadsByDate = require('./dateuploads');
+router.get('/date-uploads', getUploadsByDate);
+
 module.exports = router;

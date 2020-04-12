@@ -6,5 +6,8 @@ export const bookAPIs = {
     },
     delete_meuploads: (params, success, error) => {
         apiConnector('POST', '/api/book/delete-uploads', params, success, error);
+    },
+    get_booksbydate: (params, success, error) => {
+        apiConnector('GET', '/api/book/date-uploads', params, success, error);
     }
 }

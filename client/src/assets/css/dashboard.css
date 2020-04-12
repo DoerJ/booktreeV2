@@ -1,0 +1,16 @@
+.datedbook-item {
+    display: block;
+    border: 1px solid black;
+    border-radius: 3px;
+    height: 60px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+.datedbook-item-link {
+    display: block;
+    height: 100%;
+}
+.datedbook-item-date {
+    display: inline-block;
+    float: right;
+}

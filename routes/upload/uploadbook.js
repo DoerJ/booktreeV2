@@ -5,7 +5,7 @@ module.exports = function uploadRoute(req, res) {
     var uploadInfo = req.body;
     const bookInfo = {
         ...uploadInfo.info,
-        uploadDate: new Date(Date.now()).toString()
+        uploadDate: Date.now()
     }
     const uploadType = bookInfo.type;
 
@@ -28,7 +28,7 @@ module.exports = function uploadRoute(req, res) {
     });
 
     var setBooksByDateRef = new Promise((resolve, reject) => {
-        db.collection('BooksByDate').doc(bookInfo.uploadDate).set(bookInfo)
+        db.collection('BooksByDate').doc(new Date(bookInfo.uploadDate).toString()).set(bookInfo)
             .then(() => {
                 resolve(['booksByDateRef', {
                     resContext: 'SET_BOOKSBYDATEREF_WITH_UPLOAD',
