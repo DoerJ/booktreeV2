@@ -2,7 +2,6 @@ const fbServices = require('../../firebase/firebase.js');
 const db = fbServices.db;
 
 module.exports = function getMeUploadsRoute(req, res) {
-    console.log('Fetching recent uploads ...');
     db.collection('Users').doc(req.query.uid).get()
         .then(doc => {
             if(doc.exists) {
