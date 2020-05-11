@@ -6,6 +6,7 @@ export { bookAPIs } from './services/apis/bookapis.js';
 export { localStorageModel } from './services/storage/localstorage.js';
 export { dateDiff } from './services/utils/datediff.js';
 export { generateToken } from './services/utils/tokengenerator.js';
+export { debounce } from './services/utils/debouncer.js';
 export { firebaseStorageModel } from './services/storage/firebasestorage.js';
 export { fileManager } from './services/filemanager/filemanager.js';
 export { cacheRepository } from './services/cache/cacherepo.js';

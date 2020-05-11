@@ -17,13 +17,13 @@ export function apiConnector(method, api, params, success, error) {
     }
 
     if(params.cache_id) {
-        let openCache = new Promise((resolve, reject) => {
+        let openCache = new Promise(resolve => {
             caches.open(params.cache_id).then(cache => resolve(cache));
         });
         openCache.then(cache => {
             cache.match(api).then(res => {
                 if(res) {
-                    let fetchResponseBlob = new Promise((resolve, reject) => {
+                    let fetchResponseBlob = new Promise(resolve => {
                         resolve(res.blob());
                     });
                     fetchResponseBlob
