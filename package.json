@@ -19,10 +19,10 @@
   },
   "homepage": "https://github.com/DoerJ/booktreeV2#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "connect-redis": "^4.0.4",
     "cookie-parser": "^1.4.4",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-session": "^1.17.0",
     "firebase": "^7.9.3",
     "redis": "^3.0.2",
